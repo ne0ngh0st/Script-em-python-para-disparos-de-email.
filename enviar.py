@@ -521,6 +521,51 @@ else:
     if not os.path.exists(caminho_catalogo):
         raise FileNotFoundError(f"Arquivo do catálogo não encontrado: {caminho_catalogo}")
 
+    # Ler a planilha de clientes
+df = pd.read_excel("carteira.xlsx")
+df.columns = df.columns.str.strip()
+
+# Verificar colunas necessárias
+colunas_necessarias = ["SERVIÇOS", "EMPRESA", "EMAIL"]
+if not all(coluna in df.columns for coluna in colunas_necessarias):
+    raise ValueError(f"A planilha deve conter as colunas: {colunas_necessarias}")
+
+# Solicitar o segmento desejado
+segmento_desejado = input("Digite o segmento desejado: ").strip()
+
+# Normalizar o segmento digitado (remover espaços e converter para minúsculas)
+segmento_desejado_normalizado = segmento_desejado.lower().strip()
+
+# Escolher o template com base no segmento (case-insensitive)
+template_key = None
+for key in TEMPLATES.keys():
+    if key.lower() == segmento_desejado_normalizado:
+        template_key = key
+        break
+
+# Usar o template DEFAULT se o segmento não for encontrado
+template = TEMPLATES.get(template_key, TEMPLATES["DEFAULT"])
+
+# Filtrar empresas do segmento
+df_segmento = df[df["SERVIÇOS"].str.contains(segmento_desejado, case=False, na=False)]
+
+if df_segmento.empty:
+    print(f"Nenhuma empresa encontrada para o segmento: {segmento_desejado}")
+else:
+    print(f"Encontradas {len(df_segmento)} empresas para o segmento: {segmento_desejado}")
+
+    # Configurar Outlook e caminho do catálogo
+    outlook = win32.Dispatch("Outlook.Application")
+    caminho_catalogo = r"C:\Users\antonio.barbosa\Desktop\PESSOAL\Prog\EnvioEmails\CATALOGO 2025.pdf"
+    
+    if not os.path.exists(caminho_catalogo):
+        raise FileNotFoundError(f"Arquivo do catálogo não encontrado: {caminho_catalogo}")
+        
+        # Perguntar ao usuário se deseja analisar ou enviar diretamente
+    opcao = input("Deseja analisar os e-mails antes de enviar? (S/N): ").strip().upper()
+    analisar_antes = opcao == "S"
+
+
     # Enviar e-mails
     for index, row in df_segmento.iterrows():
         nome_empresa = row["EMPRESA"]
@@ -541,5 +586,10 @@ else:
                 print(f"Erro ao enviar para {email_destino}: {str(e)}")
         else:
             print(f"E-mail inválido para {nome_empresa}: {email_destino}")
-
+if analisar_antes:
+    mail.Display()
+    print(f"E-mail para {email_destino} exibido para análise.")
+else:
+    mail.Send()
+    print(f"E-mail para {email_destino} enviado com sucesso!")
 print("Processo concluído!")
