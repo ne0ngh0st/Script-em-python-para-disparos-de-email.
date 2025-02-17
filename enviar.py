@@ -6,8 +6,7 @@ import os
 TEMPLATES = {
     "Saúde": {
         "subject": "Soluções Personalizadas em Papel e Suprimentos - {nome_empresa}",
-        "body": """
-        Olá,
+        "body": """Olá,
 
 Meu nome é Antonio e represento a Autopel Soluções, fornecedora especializada em produtos essenciais para o setor de saúde, como papéis e suprimentos personalizados. Atendemos empresas como a {nome_empresa}, oferecendo soluções de qualidade para facilitar a operação e garantir conformidade regulatória.
 
@@ -28,8 +27,7 @@ Atenciosamente,
     },
     "Educação": {
         "subject": "Soluções Personalizadas em Papel e Suprimentos - {nome_empresa}",
-        "body": """
-        Olá,
+        "body": """Olá,
 
 Tudo bem?
 
@@ -52,8 +50,7 @@ Atenciosamente,
     },
      "Logística": {
         "subject": "Soluções em Etiquetas e Suprimentos para Logística - {nome_empresa}",
-        "body": """
-        Olá,
+        "body": """Olá,
 
 Tudo bem?
 
@@ -76,12 +73,12 @@ Atenciosamente,
     },
      "TECH": {
         "subject": "Soluções em Bobinas e Suprimentos para Tecnologia - {nome_empresa}",
-        "body": """
-        Olá,
+        "body": """Olá,
 
 Tudo bem?
 
-Sou Antonio, da Autopel Soluções, e estou super empolgado para apresentar as soluções que podemos oferecer para {nome_empresa}. Sabemos que no setor de tecnologia, a eficiência operacional e a precisão são fundamentais. Por isso, temos os produtos ideais para garantir que suas operações diárias sejam ainda mais eficientes!
+Sou Antonio, da Autopel Soluções, e estou super empolgado para apresentar as soluções que podemos oferecer para {nome_empresa}.
+Sabemos que no setor de tecnologia, a eficiência operacional e a precisão são fundamentais. Por isso, temos os produtos ideais para garantir que suas operações diárias sejam ainda mais eficientes!
 
 Oferecemos:
 
@@ -100,8 +97,7 @@ Atenciosamente,
     },
      "Indústria": {
         "subject": "Solução em Etiquetas, Lacres e Rótulos para {nome_empresa}",
-        "body": """
-        Olá!!
+        "body": """Olá!!
 
         Meu nome é Antonio, e represento a Autopel Soluções, fornecedora especializada em etiquetas, rótulos e lacres de segurança para indústrias como a {nome_empresa}.
 
@@ -120,8 +116,7 @@ Atenciosamente,
     },
      "Comércio Varejista": {
         "subject": "Soluções em Bobinas Térmicas e Suprimentos para Varejo - {nome_empresa}",
-        "body": """
-        Olá,
+        "body": """Olá,
 
 Tudo bem?
 
@@ -144,8 +139,7 @@ Atenciosamente,
     },
      "Restaurante": {
         "subject": " Soluções em Bobinas Térmicas e Suprimentos para Restaurantes - {nome_empresa}",
-        "body": """
-        Olá,
+        "body": """Olá,
 
 Tudo bem?
 
@@ -168,8 +162,7 @@ Atenciosamente,
     },
      "Serviços": {
         "subject": "Suprimentos Eficientes para Empresas de Serviços - {nome_empresa}",
-        "body": """
-        Olá,
+        "body": """Olá,
 
 Tudo bem?
 
@@ -192,8 +185,7 @@ Atenciosamente,
     },
      "Concessionária": {
         "subject": "Soluções em Bobinas e Suprimentos para Concessionárias - {nome_empresa}",
-        "body": """
-        Olá,
+        "body": """Olá,
 
 Tudo bem?
 
@@ -218,8 +210,7 @@ Autopel Soluções
     },
      "Banco": {
         "subject": "Soluções em Bobinas e Suprimentos para Bancos - {nome_empresa}",
-        "body": """
-        Olá,
+        "body": """Olá,
 
 Tudo bem?
 
@@ -242,8 +233,7 @@ Atenciosamente,
     },
      "Grafica": {
         "subject": "Soluções em Bobinas e Papel para Gráficas - {nome_empresa}",
-        "body": """
-        Olá,
+        "body": """Olá,
 
 Tudo bem?
 
@@ -266,8 +256,7 @@ Atenciosamente,
     },
      "Estacionamento": {
         "subject": "Soluções em Bobinas e Suprimentos para Estacionamentos - {nome_empresa}",
-        "body": """
-        Olá,
+        "body": """Olá,
 
 Tudo bem?
 
@@ -290,8 +279,7 @@ Atenciosamente,
     },
      "Segurança": {
         "subject": "Soluções em Etiquetas, Bobinas e Suprimentos para Segurança - {nome_empresa}",
-        "body": """
-        Olá,
+        "body": """Olá,
 
 Tudo bem?
 
@@ -337,8 +325,7 @@ Atenciosamente,
     },
      "Eventos": {
         "subject": " Soluções em Bobinas e Suprimentos para Empresas de Eventos - {nome_empresa}",
-        "body": """
-        Olá,
+        "body": """Olá,
 
 Tudo bem?
 
@@ -361,8 +348,7 @@ Atenciosamente,
     },
      "Hotelaria": {
         "subject": "Soluções em Bobinas e Suprimentos para o Setor de Hotelaria - {nome_empresa}",
-        "body": """
-        Olá,
+        "body": """Olá,
 
 Tudo bem?
 
@@ -385,8 +371,7 @@ Atenciosamente,
     },
      "Farmacêutica": {
         "subject": "Soluções em Etiquetas, Bobinas e Suprimentos para Indústria Farmacêutica - {nome_empresa}",
-        "body": """
-        Olá,
+        "body": """Olá,
 
 Tudo bem?
 
@@ -410,8 +395,7 @@ Atenciosamente,
     },
     "Automotivo": {
         "subject": "Soluções em Bobinas e Suprimentos para o Setor Automotivo - {nome_empresa}",
-        "body": """
-        Olá,
+        "body": """Olá,
 
 Tudo bem?
 
@@ -434,8 +418,7 @@ Atenciosamente,
     },
     "Imobiliário": {
         "subject": "Soluções em Bobinas e Suprimentos para o Setor Imobiliário - {nome_empresa}",
-        "body": """
-        XXOlá,
+        "body": """Olá,
 
 Tudo bem?
 
@@ -453,15 +436,14 @@ Que tal agendarmos uma conversa para entender melhor suas necessidades? Estou à
 
 Fico aguardando seu retorno.
 
-Atenciosamente,X
+Atenciosamente,
         """
     },
 
     # Adicione mais segmentos conforme necessário
     "DEFAULT": {
         "subject": "Solução em Etiquetas, Lacres e Rótulos para {nome_empresa}",
-        "body": """
-        Olá!!
+        "body": """Olá!!
 
         Meu nome é Antonio, e represento a Autopel Soluções, fornecedora especializada em etiquetas, rótulos e lacres de segurança para indústrias como a {nome_empresa}.
 
@@ -520,6 +502,11 @@ else:
     
     if not os.path.exists(caminho_catalogo):
         raise FileNotFoundError(f"Arquivo do catálogo não encontrado: {caminho_catalogo}")
+        
+        # Perguntar ao usuário se deseja analisar ou enviar diretamente
+    opcao = input("Deseja analisar os e-mails antes de enviar? (S/N): ").strip().upper()
+    analisar_antes = opcao == "S"
+
 
     # Enviar e-mails
     for index, row in df_segmento.iterrows():
@@ -541,5 +528,10 @@ else:
                 print(f"Erro ao enviar para {email_destino}: {str(e)}")
         else:
             print(f"E-mail inválido para {nome_empresa}: {email_destino}")
-
+if analisar_antes:
+    mail.Display()
+    print(f"E-mail para {email_destino} exibido para análise.")
+else:
+    mail.Send()
+    print(f"E-mail para {email_destino} enviado com sucesso!")
 print("Processo concluído!")
