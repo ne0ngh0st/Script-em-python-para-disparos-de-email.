@@ -540,14 +540,9 @@ else:
 
     # Configurar Outlook e caminho do catálogo
     outlook = win32.Dispatch("Outlook.Application")
-<<<<<<< HEAD
     caminho_catalogo = r"C:\Users\antonio.barbosa\Desktop\PESSOAL\Prog\EnvioEmails\Data\CATALOGO 2025.pdf"
     caminho_assinatura = r"C:\Users\antonio.barbosa\Desktop\PESSOAL\Prog\EnvioEmails\Data\assinatura.png"
-=======
-    caminho_catalogo = r"C:\Users\antonio.barbosa\Desktop\PESSOAL\Prog\EnvioEmails\CATALOGO 2025.pdf"
-    caminho_assinatura = r"C:\Users\antonio.barbosa\Desktop\PESSOAL\Prog\EnvioEmails\assinatura.png"
->>>>>>> aedfc88ba0f5092f13f97c5afa32d44900c43dcb
-    
+
     if not os.path.exists(caminho_catalogo):
         raise FileNotFoundError(f"Arquivo do catálogo não encontrado: {caminho_catalogo}")
     if not os.path.exists(caminho_assinatura):
