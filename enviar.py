@@ -2,6 +2,12 @@ import pandas as pd
 import win32com.client as win32
 import os
 import base64
+import urllib.request
+import win32com.client as win32
+import requests
+
+print("Diretório de trabalho atual:", os.getcwd())
+
 
 # Definir os templates para cada segmento
 TEMPLATES = {
@@ -26,6 +32,7 @@ TEMPLATES = {
 <p>Fico à disposição para qualquer dúvida e aguardo seu retorno.</p>
 
 <p>Atenciosamente,</p>
+<img src="https://7ejh2uf3df.execute-api.us-east-2.amazonaws.com/PROD/rastreamento?email={{email}}" width="1" height="1" style="display:none;" />
 
         """
     },
@@ -53,6 +60,7 @@ TEMPLATES = {
 <p>Fico à disposição para esclarecer qualquer dúvida e aguardo seu retorno.</p>
 
 <p>Atenciosamente,</p>
+<img src="https://7ejh2uf3df.execute-api.us-east-2.amazonaws.com/PROD/rastreamento?email={{email}}" width="1" height="1" style="display:none;" />
 
         """
     },
@@ -78,7 +86,8 @@ TEMPLATES = {
 
 <p>Fico aguardando seu retorno.</p>
 
-<p>Atenciosamente,</p>
+<p>Atenciosamente,</p><img src="https://7ejh2uf3df.execute-api.us-east-2.amazonaws.com/PROD/rastreamento?email={{email}}" width="1" height="1" style="display:none;" />
+
         """
     },
      "TECH": {
@@ -105,6 +114,7 @@ TEMPLATES = {
 <p>Fico aguardando seu retorno.</p>
 
 <p>Atenciosamente,</p>
+<img src="https://7ejh2uf3df.execute-api.us-east-2.amazonaws.com/PROD/rastreamento?email={{email}}" width="1" height="1" style="display:none;" />
         """
     },
      "Indústria": {
@@ -126,6 +136,7 @@ TEMPLATES = {
 <p>Atenciosamente,<br>
 Antonio<br>
 Autopel Soluções</p>
+<img src="https://7ejh2uf3df.execute-api.us-east-2.amazonaws.com/PROD/rastreamento?email={{email}}" width="1" height="1" style="display:none;" />
         """
     },
      "Comércio Varejista": {
@@ -152,6 +163,7 @@ Autopel Soluções</p>
 <p>Fico aguardando seu retorno.</p>
 
 <p>Atenciosamente,</p>
+<img src="https://7ejh2uf3df.execute-api.us-east-2.amazonaws.com/PROD/rastreamento?email={{email}}" width="1" height="1" style="display:none;" />
         """
     },
      "Restaurante": {
@@ -178,6 +190,7 @@ Autopel Soluções</p>
 <p>Fico aguardando seu retorno.</p>
 
 <p>Atenciosamente,</p>
+<img src="https://7ejh2uf3df.execute-api.us-east-2.amazonaws.com/PROD/rastreamento?email={{email}}" width="1" height="1" style="display:none;" />
         """
     },
      "Serviços": {
@@ -204,6 +217,7 @@ Autopel Soluções</p>
 <p>Fico aguardando seu retorno.</p>
 
 <p>Atenciosamente,</p>
+<img src="https://7ejh2uf3df.execute-api.us-east-2.amazonaws.com/PROD/rastreamento?email={{email}}" width="1" height="1" style="display:none;" />
         """
     },
      "Concessionária": {
@@ -232,6 +246,7 @@ Autopel Soluções</p>
 <p>Atenciosamente,</p>
 <p>Antonio [Seu Sobrenome]</p>
 <p>Autopel Soluções</p>
+<img src="https://7ejh2uf3df.execute-api.us-east-2.amazonaws.com/PROD/rastreamento?email={{email}}" width="1" height="1" style="display:none;" />
         """
     },
      "Banco": {
@@ -255,6 +270,7 @@ Que tal agendarmos uma conversa para entender melhor suas necessidades? Estou à
 Fico aguardando seu retorno.
 
 Atenciosamente,
+<img src="https://7ejh2uf3df.execute-api.us-east-2.amazonaws.com/PROD/rastreamento?email={{email}}" width="1" height="1" style="display:none;" />
         """
     },
      "Grafica": {
@@ -278,6 +294,7 @@ Que tal agendarmos uma conversa para entender melhor suas necessidades? Estou à
 Fico aguardando seu retorno.
 
 Atenciosamente,
+<img src="https://7ejh2uf3df.execute-api.us-east-2.amazonaws.com/PROD/rastreamento?email={{email}}" width="1" height="1" style="display:none;" />
         """
     },
      "Estacionamento": {
@@ -301,6 +318,7 @@ Que tal agendarmos uma conversa para entender melhor suas necessidades? Estou à
 Fico aguardando seu retorno.
 
 Atenciosamente,
+<img src="https://7ejh2uf3df.execute-api.us-east-2.amazonaws.com/PROD/rastreamento?email={{email}}" width="1" height="1" style="display:none;" />
         """
     },
      "Segurança": {
@@ -327,6 +345,7 @@ Atenciosamente,
 <p>Fico aguardando seu retorno.</p>
 
 <p>Atenciosamente,</p>
+<img src="https://7ejh2uf3df.execute-api.us-east-2.amazonaws.com/PROD/rastreamento?email={{email}}" width="1" height="1" style="display:none;" />
         """
     },
      "Energia": {
@@ -350,6 +369,7 @@ Atenciosamente,
 
     <p>Atenciosamente,</p>
     <p><strong>Antonio</strong><br>Autopel Soluções</p>
+    <img src="https://7ejh2uf3df.execute-api.us-east-2.amazonaws.com/PROD/rastreamento?email={{email}}" width="1" height="1" style="display:none;" />
         """
     },
      "Eventos": {
@@ -375,6 +395,7 @@ Atenciosamente,
 <p>Fico aguardando seu retorno.</p>
 
 <p>Atenciosamente,</p>
+<img src="https://7ejh2uf3df.execute-api.us-east-2.amazonaws.com/PROD/rastreamento?email={{email}}" width="1" height="1" style="display:none;" />
         """
     },
      "Hotelaria": {
@@ -399,6 +420,7 @@ Atenciosamente,
 
     <p>Atenciosamente,</p>
     <p><strong>Antonio</strong><br>Autopel Soluções</p>
+    <img src="https://7ejh2uf3df.execute-api.us-east-2.amazonaws.com/PROD/rastreamento?email={{email}}" width="1" height="1" style="display:none;" />
         """
     },
      "Farmacêutica": {
@@ -431,6 +453,7 @@ Tudo bem?
     
     <p>Atenciosamente,</p>
     <p>Antonio</p>
+    <img src="https://7ejh2uf3df.execute-api.us-east-2.amazonaws.com/PROD/rastreamento?email={{email}}" width="1" height="1" style="display:none;" />
         """
     },
     "Automotivo": {
@@ -455,6 +478,7 @@ Tudo bem?
     <p>Fico aguardando seu retorno.</p>
 
     <p>Atenciosamente,</p>
+    <img src="https://7ejh2uf3df.execute-api.us-east-2.amazonaws.com/PROD/rastreamento?email={{email}}" width="1" height="1" style="display:none;" />
         """
     },
     "Imobiliário": {
@@ -479,6 +503,8 @@ Tudo bem?
     <p>Fico aguardando seu retorno.</p>
 
     <p>Atenciosamente,</p>
+    <img src="https://7ejh2uf3df.execute-api.us-east-2.amazonaws.com/PROD/rastreamento?email={{email}}" width="1" height="1" style="display:none;" />
+
         """
     },
 
@@ -500,13 +526,27 @@ Tudo bem?
         Atenciosamente,  
         Antonio  
         Autopel Soluções  
+        <img src="https://7ejh2uf3df.execute-api.us-east-2.amazonaws.com/PROD/rastreamento?email={{email}}" width="1" height="1" style="display:none;" />
         """
     }
 
 }
 
+# Função para baixar arquivos de URLs
+def baixar_arquivo(url, caminho_local):
+    try:
+        response = requests.get(url, verify=False)  # Ignora a verificação do certificado SSL
+        response.raise_for_status()  # Verifica se a requisição foi bem-sucedida
+        with open(caminho_local, 'wb') as arquivo:
+            arquivo.write(response.content)
+        return True
+    except requests.exceptions.RequestException as e:
+        print(f"Erro ao baixar o arquivo: {e}")
+        return False
+    
 # Ler a planilha de clientes
-df = pd.read_excel("C:\\Users\\antonio.barbosa\\Desktop\\PESSOAL\\Prog\\EnvioEmails\\Data\\carteira.xlsx")
+url_planilha = "https://arquivosparascript.s3.us-east-2.amazonaws.com/carteira.xlsx"
+df = pd.read_excel(url_planilha)
 df.columns = df.columns.str.strip()
 
 # Verificar colunas necessárias
@@ -538,10 +578,18 @@ if df_segmento.empty:
 else:
     print(f"Encontradas {len(df_segmento)} empresas para o segmento: {segmento_desejado}")
 
+    # Obter o diretório onde o script Python está localizado
+    diretorio_script = os.path.dirname(os.path.realpath(__file__))
+
     # Configurar Outlook e caminho do catálogo
     outlook = win32.Dispatch("Outlook.Application")
-    caminho_catalogo = r"C:\Users\antonio.barbosa\Desktop\PESSOAL\Prog\EnvioEmails\Data\CATALOGO 2025.pdf"
-    caminho_assinatura = r"C:\Users\antonio.barbosa\Desktop\PESSOAL\Prog\EnvioEmails\Data\assinatura.png"
+    caminho_catalogo = os.path.join(diretorio_script, "CATALOGO2025.pdf")
+    caminho_assinatura = os.path.join(diretorio_script, "assinatura.png")
+
+    if not baixar_arquivo("https://arquivosparascript.s3.us-east-2.amazonaws.com/CATALOGO2025.pdf", caminho_catalogo):
+        raise FileNotFoundError(f"Erro ao baixar o catálogo.")
+    if not baixar_arquivo("https://arquivosparascript.s3.us-east-2.amazonaws.com/assinatura.png", caminho_assinatura):
+        raise FileNotFoundError(f"Erro ao baixar a assinatura.")
 
     if not os.path.exists(caminho_catalogo):
         raise FileNotFoundError(f"Arquivo do catálogo não encontrado: {caminho_catalogo}")
@@ -551,6 +599,20 @@ else:
     # Perguntar ao usuário se deseja analisar ou enviar direto
     opcao = input("Deseja analisar os e-mails antes de enviar? (S/N): ").strip().upper()
     analisar_antes = opcao == "S"
+
+    # Verificar o caminho dos arquivos antes de tentar anexar
+print(f"Caminho do catálogo: {caminho_catalogo}")
+print(f"Caminho da assinatura: {caminho_assinatura}")
+
+if not os.path.exists(caminho_catalogo):
+    raise FileNotFoundError(f"Arquivo do catálogo não encontrado: {caminho_catalogo}")
+else:
+    print("Catálogo encontrado!")
+
+if not os.path.exists(caminho_assinatura):
+    raise FileNotFoundError(f"Arquivo da assinatura não encontrado: {caminho_assinatura}")
+else:
+    print("Assinatura encontrada!")
 
     # Ler a imagem da assinatura e codificar em Base64
     with open(caminho_assinatura, "rb") as img_file:
